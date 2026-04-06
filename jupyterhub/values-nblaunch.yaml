@@ -32,7 +32,17 @@ hub:
       def _set_home_subpath(volume_mounts, subpath):
           if not volume_mounts:
               return
-          for mount in volume_mounts:
+
+          if isinstance(volume_mounts, dict):
+              mounts = volume_mounts.values()
+          elif isinstance(volume_mounts, list):
+              mounts = volume_mounts
+          else:
+              return
+
+          for mount in mounts:
+              if not isinstance(mount, dict):
+                  continue
               if mount.get("name") == "home-nfs" and mount.get("mountPath") == "/home/jovyan":
                   mount["subPath"] = subpath
 
@@ -40,7 +50,12 @@ hub:
           subpath = home_subpath_for(spawner.user.name)
           _set_home_subpath(spawner.volume_mounts, subpath)
 
-          for container in (spawner.extra_containers or []):
+          extra_containers = spawner.extra_containers or []
+          if isinstance(extra_containers, dict):
+              extra_containers = extra_containers.values()
+          for container in extra_containers:
+              if not isinstance(container, dict):
+                  continue
               _set_home_subpath(container.get("volumeMounts"), subpath)
 
       c.Spawner.pre_spawn_hook = pre_spawn_hook
