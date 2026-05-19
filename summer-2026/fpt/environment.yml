@@ -1,0 +1,36 @@
+name: fpt-summer-2026
+channels:
+ - conda-forge
+dependencies:
+  # Required by JupyterLab
+  - 'python<3.11'
+  - nb_conda_kernels
+  - ipykernel
+  # User requested packages
+  - cartopy
+  - dask
+  - h5py
+  - ipywidgets
+  - joblib
+  - matplotlib
+  - metpy
+  - netcdf4
+  - numpy
+  - pandas
+  - pip
+  - plotly
+  - scikit-learn
+  - scipy
+  - seaborn
+  - siphon
+  - tqdm
+  - xarray
+  - zarr
+  - pip:
+    # It is recommended to install a package using pip as a last resort, i.e.
+    # when it is not found in the conda repos
+    - git+https://github.com/NVIDIA/earth2mip
+    - torch
+    - torchvision
+    - torchaudio
+    - --extra-index-url https://download.pytorch.org/whl/cu121
