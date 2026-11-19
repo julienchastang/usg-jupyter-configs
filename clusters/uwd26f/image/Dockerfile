@@ -20,7 +20,7 @@ RUN . /srv/conda/etc/profile.d/conda.sh && conda activate notebook && \
     pip install --no-cache-dir \
         distributed \
         dask-gateway \
-        dask-kubernetes \
+        dask-kubernetes==2026.3.0 \
         graphviz \
         h5netcdf \
         ipywidgets \
@@ -35,9 +35,11 @@ RUN . /srv/conda/etc/profile.d/conda.sh && conda activate notebook && \
     conda clean --all -f -y
 
 ENV MPLCONFIGDIR=/home/jovyan/.mplconfig
+ENV PYTHONPATH=/opt/unidata:${PYTHONPATH}
 RUN mkdir -p /home/jovyan/.mplconfig \
  && chown -R jovyan:users /home/jovyan/.mplconfig
 
+COPY unidata_dask.py /opt/unidata/unidata_dask.py
 COPY ERA5_data_fetcher.ipynb Dask.ipynb wrf.ipynb Acknowledgements.ipynb /
 
 USER $NB_UID
