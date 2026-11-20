@@ -40,6 +40,6 @@ RUN mkdir -p /home/jovyan/.mplconfig \
  && chown -R jovyan:users /home/jovyan/.mplconfig
 
 COPY unidata_dask.py /opt/unidata/unidata_dask.py
-COPY ERA5_data_fetcher.ipynb Dask.ipynb wrf.ipynb Acknowledgements.ipynb /
+COPY ERA5_data_fetcher.ipynb Dask.ipynb Acknowledgements.ipynb /
 
 USER $NB_UID
