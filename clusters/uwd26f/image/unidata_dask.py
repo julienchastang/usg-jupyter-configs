@@ -7,7 +7,7 @@ from dask_kubernetes.operator import KubeCluster, make_cluster_spec
 
 
 NAMESPACE = "jhub"
-IMAGE = "unidata/uwd26f:2026Nov16_230731_2640"
+IMAGE = "unidata/uwd26f:2026Nov19_235637_71c5
 NODE_SELECTOR = {"capi.stackhpc.com/node-group": "mediums"}
 RESOURCES = {
     "requests": {"cpu": "1", "memory": "2Gi"},
