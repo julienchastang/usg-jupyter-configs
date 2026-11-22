@@ -25,6 +25,7 @@ RUN . /srv/conda/etc/profile.d/conda.sh && conda activate notebook && \
         h5netcdf \
         ipywidgets \
         matplotlib \
+        nbdime \
         netcdf4 \
         numpy \
         pandas \
@@ -32,6 +33,7 @@ RUN . /srv/conda/etc/profile.d/conda.sh && conda activate notebook && \
         scipy \
         siphon \
         xarray && \
+    nbdime extensions --enable --sys-prefix && \
     conda clean --all -f -y
 
 ENV MPLCONFIGDIR=/home/jovyan/.mplconfig
