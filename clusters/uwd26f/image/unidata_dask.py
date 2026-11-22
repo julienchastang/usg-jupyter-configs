@@ -33,4 +33,5 @@ def create_cluster(name="my-dask-cluster-{uuid}", workers=0):
     return KubeCluster(
         namespace=NAMESPACE,
         custom_cluster_spec=_make_cluster_spec(name, workers),
+        resource_timeout=300,
     )
